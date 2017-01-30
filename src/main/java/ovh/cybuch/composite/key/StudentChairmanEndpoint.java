@@ -29,15 +29,15 @@ class StudentChairmanEndpoint {
 
 	@PostMapping("{studentId}/group/{groupId}")
 	ResponseEntity<StudentChairmanDto> promoteToChairman(@PathVariable String studentId,
-													  @PathVariable String groupId) {
+													     @PathVariable String groupId) {
 		StudentChairman studentChairman = studentChairmanRepository.save(studentId, groupId);
 		URI studentChairmanLocation = fromUriString("/students/" + studentChairman.getId().getStudentId() + "/group/" + studentChairman.getId().getGroupId()).build().toUri();
 		return created(studentChairmanLocation).body(studentChairman.dto());
 	}
-	
+
 	@GetMapping("{studentId}/group/{groupId}")
 	ResponseEntity<StudentChairmanDto> getChairman(@PathVariable String studentId,
-			 									@PathVariable String groupId) {
+			 									   @PathVariable String groupId) {
 		StudentChairman studentChairman = studentChairmanRepository.findOne(studentId, groupId);
 		if (studentChairman == null) {
 			return new ResponseEntity<>(NOT_FOUND);
