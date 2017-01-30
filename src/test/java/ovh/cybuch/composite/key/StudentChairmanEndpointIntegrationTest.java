@@ -20,15 +20,14 @@ public class StudentChairmanEndpointIntegrationTest {
 	private static final String VALID_STUDENT_ID = "123";
 	private static final String VALID_GROUP_ID = "123";
 	private static final String VALID_ENDPOINT_PATH = "/students/" + VALID_STUDENT_ID + "/group/" + VALID_GROUP_ID;
-	
+
 	@Autowired
 	private MockMvc mockMvc;
-	
+
 	@Test
 	public void shouldCreateAndReadStudentChairman() throws Exception {
 		mockMvc.perform(post(VALID_ENDPOINT_PATH))
 				.andExpect(status().isCreated());
-		
 		mockMvc.perform(get(VALID_ENDPOINT_PATH))
 				.andExpect(status().isOk());
 	}
