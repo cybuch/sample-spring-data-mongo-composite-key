@@ -2,6 +2,7 @@ package ovh.cybuch.composite.key;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.data.mongodb.config.EnableMongoAuditing;
 
 @SpringBootApplication
@@ -9,6 +10,7 @@ import org.springframework.data.mongodb.config.EnableMongoAuditing;
 public class AppRunner {
 
 	public static void main(String[] args) {
-        SpringApplication.run(AppRunner.class, args);
+		ConfigurableApplicationContext context = SpringApplication.run(AppRunner.class, args);
+		System.out.println(context.getEnvironment().getProperty("spring.data.mongodb.database"));
 	}
 }

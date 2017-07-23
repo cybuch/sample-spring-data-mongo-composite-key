@@ -31,7 +31,8 @@ class StudentChairmanEndpoint {
 	ResponseEntity<StudentChairmanDto> promoteToChairman(@PathVariable String studentId,
 													  @PathVariable String groupId) {
 		StudentChairman studentChairman = studentChairmanRepository.save(studentId, groupId);
-		URI studentChairmanLocation = fromUriString("/students/" + studentChairman.getId().getStudentId() + "/group/" + studentChairman.getId().getGroupId()).build().toUri();
+		URI studentChairmanLocation = fromUriString("/students/" + studentChairman.getId().getStudentId() 
+				+ "/group/" + studentChairman.getId().getGroupId()).build().toUri();
 		return created(studentChairmanLocation).body(studentChairman.dto());
 	}
 	
